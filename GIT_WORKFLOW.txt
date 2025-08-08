@@ -1,0 +1,64 @@
+====================================
+ Git & GitHub Workflow for Our Team
+====================================
+
+Follow these steps when making changes to the project:
+
+------------------------------------
+Step 1: Create a new branch for your edits
+------------------------------------
+# Make sure you are on the main branch and up to date
+git checkout main
+git pull origin main
+
+# Create and switch to a new branch (name it something clear)
+git checkout -b feature/your-branch-name
+
+Example:
+git checkout -b feature/project-structure
+
+------------------------------------
+Step 2: Add and commit your changes
+------------------------------------    
+# Stage all changes
+git add .
+
+# Commit with a descriptive message
+git commit -m "Describe your change here"
+
+Example:
+git commit -m "Refactor project into simple src structure"
+
+------------------------------------
+Step 3: Push the new branch to GitHub
+------------------------------------
+git push -u origin feature/your-branch-name
+
+Example:
+git push -u origin feature/project-structure
+
+------------------------------------
+Step 4:Open a Pull Request on GitHub
+------------------------------------
+- Go to the repo on GitHub: https://github.com/malakmahersoliman/GroupFour_ChatApp
+- You will see a yellow banner suggesting:
+  "Compare & pull request" — click it.
+
+(If not, click Pull requests → New pull request → choose your branch from the dropdown.)
+
+------------------------------------
+Step 5:Fill in Pull Request details
+------------------------------------
+Title: Short summary of your change.
+Example: Refactor into simple src folder
+
+Description: Explain what you changed and why.
+Example:
+- Moved all class files into a `src/` folder
+- Added instructions for compiling from main.cpp
+
+------------------------------------
+⚠️ Note:
+------------------------------------
+- Do "NOT" merge the pull request yourself.
+- I will review and merge it.
