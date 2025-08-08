@@ -1,0 +1,29 @@
+===============================
+ How to Compile & Run the App
+===============================
+
+1. Open Terminal and go to the project folder:
+   cd "/GroupFour_ChatApp/" location where you clone it
+
+2. Compile the program:
+   g++ main.cpp -o chatapp
+
+3. Run the program:
+   ./chatapp
+
+===============================
+ Notes
+===============================
+- Make sure you have all the files inside the "src" folder:
+    User.cpp
+    Message.cpp
+    Chat.cpp
+    PrivateChat.cpp
+    GroupChat.cpp
+    WhatsApp.cpp
+
+- The file "main.cpp" must be in the main project folder.
+
+
+
+
