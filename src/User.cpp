@@ -40,7 +40,8 @@ void User::setPhoneNumber(string phone) {
     phoneNumber = phone; 
 }
 void User::updateLastSeen() { 
-    lastSeen = formatTime(); 
+    time_t now = time(nullptr);
+    lastSeen = formatTime(now);
 }
 bool User::checkPassword(string pwd) const { 
     return pwd == password; 
