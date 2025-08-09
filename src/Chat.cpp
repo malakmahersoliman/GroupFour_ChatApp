@@ -1,51 +1,41 @@
 #include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>  
 
+
+#include "../include/Chat.h"
+#include "../include/Message.h"
 
 using namespace std;
-
-
-class Message;
 
 // ========================
 //       CHAT CLASS (BASE)
 // ========================
-class Chat {
-protected:
-    vector<string> participants;
-    vector<Message> messages;
-    string chatName;
+Chat::Chat() {
+    // TODO: Implement default constructor
+}
 
-public:
-    Chat() {
-        // TODO: Implement default constructor
-    }
+// Parameterized constructor
+Chat::Chat(vector<string> users, string name) {
+    // TODO: Implement parameterized constructor
+}
 
-    Chat(vector<string> users, string name) {
-        // TODO: Implement parameterized constructor
-    }
+void Chat::addMessage(const Message& msg) {
+    // TODO: Implement message addition
+}
 
-    void addMessage(const Message& msg) {
-        // TODO: Implement message addition
-    }
+bool Chat::deleteMessage(int index, const string& username) {
+    // TODO: Implement message deletion
+    return false;
+}
 
-    bool deleteMessage(int index, const string& username) {
-        // TODO: Implement message deletion
-        return false;
-    }
+void Chat::displayChat() const {
+    // TODO: Implement chat display
+}
 
-    virtual void displayChat() const {
-        // TODO: Implement chat display
-    }
+vector<Message> Chat::searchMessages(string keyword) const {
+    // TODO: Implement message search
+    return {};
+}
 
-    vector<Message> searchMessages(string keyword) const {
-        // TODO: Implement message search
-        return {};
-    }
-
-    void exportToFile(const string& filename) const {
-        // TODO: Implement export to file
-    }
-};
+void Chat::exportToFile(const string& filename) const {
+    // TODO: Implement export to file
+}

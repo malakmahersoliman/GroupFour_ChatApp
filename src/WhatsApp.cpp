@@ -1,87 +1,103 @@
+#include "../include/WhatsApp.h"
 #include <iostream>
-#include <vector>
-#include <string>
 
 using namespace std;
 
+WhatsApp::WhatsApp() : currentUserIndex(-1) {}
 
-class User;
-class Chat;
-class PrivateChat;
-class GroupChat;
-
-// ========================
-//    WHATSAPP APP CLASS
-// ========================
-class WhatsApp {
-private:
-    vector<User> users;
-    vector<Chat*> chats;
-    int currentUserIndex;
-
-    int findUserIndex(string username) const {
-        // TODO: Implement user search
-        return -1;
+int WhatsApp::findUserIndex(string username) const {
+    for (int i = 0; i < users.size(); ++i) {
+        if (users[i].getUsername() == username) return i;
     }
+    return -1;
+}
 
-    bool isLoggedIn() const {
-        // TODO: Implement login check
-        return false;
+bool WhatsApp::isLoggedIn() const {
+    return currentUserIndex != -1;
+}
+
+string WhatsApp::getCurrentUsername() const {
+    return users[currentUserIndex].getUsername();
+}
+
+void WhatsApp::signUp() {
+    string uname, pwd, phone;
+    cout << "\n=== Sign Up ===\n";
+    cout << "Username: ";  cin >> uname;
+
+    if (findUserIndex(uname) != -1) {
+        cout << "Username already taken. Try another.\n";
+        return;
     }
+    cout << "Password:";  cin >> pwd;
+    cout << "Phone:";  cin >> phone;
+    users.push_back(User(uname, pwd, phone));
+    cout << "Account created! You can now log in.\n";
+}
 
-    string getCurrentUsername() const {
-        // TODO: Implement get current user
-        return "";
+void WhatsApp::login() {
+    string uname, pwd;
+    cout << "\n=== Login ===\n";
+    cout << "Username: "; cin >> uname;
+    cout << "Password: "; cin >> pwd;
+
+    int idx = findUserIndex(uname);
+    if (idx == -1) {
+        cout << "No such user.\n";
+        return;
     }
-
-public:
-    WhatsApp() : currentUserIndex(-1) {}
-
-    void signUp() {
-        // TODO: Implement user registration
+    if (!users[idx].checkPassword(pwd)) {
+        cout << "Wrong password.\n";
+        return;
     }
+    currentUserIndex = idx;
+    users[idx].setStatus("Online");
+    cout << "Logged in. Welcome, " << uname << "!\n";
+}
 
-    void login() {
-        // TODO: Implement user login
-    }
+void WhatsApp::startPrivateChat() {
+    cout << "(will be implemented later)\n";
+}
 
-    void startPrivateChat() {
-        // TODO: Implement private chat creation
-    }
+void WhatsApp::createGroup() {
+    cout << "(will be implemented later)\n";
+}
 
-    void createGroup() {
-        // TODO: Implement group creation
-    }
+void WhatsApp::viewChats() const {
+    cout << "(will be implemented later)\n";
+}
 
-    void viewChats() const {
-        // TODO: Implement chat viewing
-    }
+void WhatsApp::logout() {
+    users[currentUserIndex].updateLastSeen();
+    //cout << "Last seen updated to: " << users[currentUserIndex].getLastSeen() << endl;
+    users[currentUserIndex].setStatus("Offline");
+    
+    cout << "Logged out.\n";
+    currentUserIndex = -1;
+}
 
-    void logout() {
-        // TODO: Implement logout
-    }
+void WhatsApp::run() {
+    while (true) {
+        if (!isLoggedIn()) {
+            cout << "\n1. Login\n2. Sign Up\n3. Exit\nChoice: ";
+            int choice;
+            cin >> choice;
 
-    void run() {
-        while (true) {
-            if (!isLoggedIn()) {
-                cout << "\n1. Login\n2. Sign Up\n3. Exit\nChoice: ";
-                int choice;
-                cin >> choice;
+            if (choice == 1) login();
+            else if (choice == 2) signUp();
+            else if (choice == 3) break;
+            else cout << "Invalid.\n";
+        }
+        else {
+            cout << "\n1. Start Private Chat\n2. Create Group\n3. View Chats\n4. Logout\nChoice: ";
+            int choice;
+            cin >> choice;
 
-                if (choice == 1) login();
-                else if (choice == 2) signUp();
-                else if (choice == 3) break;
-            }
-            else {
-                cout << "\n1. Start Private Chat\n2. Create Group\n3. View Chats\n4. Logout\nChoice: ";
-                int choice;
-                cin >> choice;
-
-                if (choice == 1) startPrivateChat();
-                else if (choice == 2) createGroup();
-                else if (choice == 3) viewChats();
-                else if (choice == 4) logout();
-            }
+            if (choice == 1) startPrivateChat();
+            else if (choice == 2) createGroup();
+            else if (choice == 3) viewChats();
+            else if (choice == 4) logout();
+            else cout << "Invalid.\n";
         }
     }
-};
+}

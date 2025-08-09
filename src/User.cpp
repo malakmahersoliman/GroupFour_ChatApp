@@ -1,66 +1,50 @@
-#include <iostream>
-#include <string>
-#include <ctime>
-using namespace std;
+#include "../include/User.h"
 
-// ========================
-//       USER CLASS
-// ========================
-class User {
-private:
-    string username;
-    string password;
-    string phoneNumber;
-    string status;
-    string lastSeen;
 
-public:
-    User() {
-        // TODO: Implement default constructor
+static string formatTime(time_t t) {
+    return string(ctime(&t));
+}
+
+User::User() {
+    username = "";
+    password = "";
+    phoneNumber = "";
+    status = "Offline";
+    lastSeen = "Never";
+}
+
+User::User(string uname, string pwd, string phone) {
+    username = uname;
+    password = pwd;
+    phoneNumber = phone;
+    status = "Offline";
+    lastSeen = "Never";
+}
+
+string User::getUsername() const { 
+    return username; 
+}
+string User::getPhoneNumber() const {
+     return phoneNumber; 
     }
-
-    User(string uname, string pwd, string phone) {
-        // TODO: Implement parameterized constructor
-    }
-
-    string getUsername() const {
-        // TODO: Implement getter
-        return "";
-    }
-
-    string getPhoneNumber() const {
-        // TODO: Implement getter
-        return "";
-    }
-
-    string getStatus() const {
-        // TODO: Implement getter
-        return "";
-    }
-
-    string getLastSeen() const {
-        // TODO: Implement getter
-        return "";
-    }
-
-    void setStatus(string newStatus) {
-        // TODO: Implement setter
-    }
-
-    void setPhoneNumber(string phone) {
-        // TODO: Implement setter
-    }
-
-    void updateLastSeen() {
-        // TODO: Implement last seen update
-    }
-
-    bool checkPassword(string pwd) const {
-        // TODO: Implement password check
-        return false;
-    }
-
-    void changePassword(string newPwd) {
-        // TODO: Implement password change
-    }
-};
+string User::getStatus() const { 
+    return status;
+ }
+string User::getLastSeen() const {
+     return lastSeen;
+     }
+void User::setStatus(string newStatus) { 
+    status = newStatus; 
+}
+void User::setPhoneNumber(string phone) { 
+    phoneNumber = phone; 
+}
+void User::updateLastSeen() { 
+    lastSeen = formatTime(); 
+}
+bool User::checkPassword(string pwd) const { 
+    return pwd == password; 
+}
+void User::changePassword(string newPwd) { 
+    password = newPwd;
+ }

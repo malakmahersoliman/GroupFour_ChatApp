@@ -1,0 +1,12 @@
+===============================
+HEADERS IN C++ — SIMPLE GUIDE
+===============================
+
+1. WHAT IS A HEADER FILE?
+-------------------------
+A header file .h  is where we put:
+- Class definitions (name, variables, and function declarations)
+- Constants, macros, or function declarations
+
+It tells the compiler "what exists" so other files can use it.
+

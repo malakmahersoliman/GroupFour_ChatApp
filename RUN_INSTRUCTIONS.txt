@@ -3,10 +3,10 @@
 ===============================
 
 1. Open Terminal and go to the project folder:
-   cd "/GroupFour_ChatApp/" location where you clone it
+   cd "/path/to/GroupFour_ChatApp"    # location where you cloned it
 
-2. Compile the program:
-   g++ main.cpp -o chatapp
+2. Compile the program (make sure to include all source files and headers):
+   g++ -I include main.cpp src/*.cpp -o chatapp
 
 3. Run the program:
    ./chatapp
@@ -14,7 +14,7 @@
 ===============================
  Notes
 ===============================
-- Make sure you have all the files inside the "src" folder:
+- Make sure you have all the following files in the "src" folder:
     User.cpp
     Message.cpp
     Chat.cpp
@@ -22,8 +22,17 @@
     GroupChat.cpp
     WhatsApp.cpp
 
-- The file "main.cpp" must be in the main project folder.
+- The "include" folder must contain the corresponding header (.h) files:
+    User.h
+    Message.h
+    Chat.h
+    PrivateChat.h
+    GroupChat.h
+    WhatsApp.h
 
+- The file "main.cpp" must be in the main project folder (same level as the src and include folders).
+
+- Always compile using the `-I include` flag so the compiler can find your header files.
 
 
 

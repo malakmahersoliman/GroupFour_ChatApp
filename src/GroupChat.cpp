@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <string>
+#include "../include/GroupChat.h"
 
 
 using namespace std;
@@ -8,44 +6,38 @@ using namespace std;
 // ========================
 //      GROUP CHAT CLASS
 // ========================
-class GroupChat : public Chat {
-private:
-    vector<string> admins;
-    string description;
 
-public:
-    GroupChat(vector<string> users, string name, string creator) {
-        // TODO: Implement constructor
-    }
+GroupChat::GroupChat(vector<string> users, string name, string creator) {
+    // TODO: Implement constructor
+}
 
-    void addAdmin(string newAdmin) {
-        // TODO: Implement add admin
-    }
+void GroupChat::addAdmin(string newAdmin) {
+    // TODO: Implement add admin
+}
 
-    bool removeParticipant(const string& admin, const string& userToRemove) {
-        // TODO: Implement remove participant
-        return false;
-    }
+bool GroupChat::removeParticipant(const string& admin, const string& userToRemove) {
+    // TODO: Implement remove participant
+    return false;
+}
 
-    bool isAdmin(string username) const {
-        // TODO: Implement admin check
-        return false;
-    }
+bool GroupChat::isAdmin(string username) const {
+    // TODO: Implement admin check
+    return false;
+}
 
-    bool isParticipant(string username) const {
-        // TODO: Implement participant check
-        return false;
-    }
+bool GroupChat::isParticipant(string username) const {
+    // TODO: Implement participant check
+    return false;
+}
 
-    void setDescription(string desc) {
-        // TODO: Implement set description
-    }
+void GroupChat::setDescription(string desc) {
+    // TODO: Implement set description
+}
 
-    void displayChat() const override {
-        // TODO: Implement group chat display
-    }
+void GroupChat::displayChat() const {
+    // TODO: Implement group chat display
+}
 
-    void sendJoinRequest(const string& username) {
-        // TODO: Implement join request
-    }
-};
+void GroupChat::sendJoinRequest(const string& username) {
+    // TODO: Implement join request
+}

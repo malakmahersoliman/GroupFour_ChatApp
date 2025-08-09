@@ -1,11 +1,7 @@
 #include <iostream>
 
-#include "src/User.cpp"
-#include "src/Message.cpp"
-#include "src/Chat.cpp"
-#include "src/PrivateChat.cpp"
-#include "src/GroupChat.cpp"
-#include "src/WhatsApp.cpp"
+#include "include/WhatsApp.h"
+
 
 using namespace std;
 

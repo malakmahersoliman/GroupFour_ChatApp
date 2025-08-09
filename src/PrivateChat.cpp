@@ -1,29 +1,21 @@
-#include <iostream>
-#include <vector>
-#include <string>
 
+#include "../include/PrivateChat.h"
 
 using namespace std;
-
-
 // ========================
 //     PRIVATE CHAT CLASS
 // ========================
-class PrivateChat : public Chat {
-private:
-    string user1;
-    string user2;
 
-public:
-    PrivateChat(string u1, string u2) {
-        // TODO: Implement constructor
-    }
 
-    void displayChat() const override {
-        // TODO: Implement private chat display
-    }
+PrivateChat::PrivateChat(string u1, string u2) {
+    // TODO: Implement constructor
+}
 
-    void showTypingIndicator(const string& username) const {
-        // TODO: Implement typing indicator
-    }
-};
+void PrivateChat::displayChat() const{
+    // TODO: Implement private chat display
+}
+
+void PrivateChat::showTypingIndicator(const std::string& username) const {
+    // TODO: Implement typing indicator
+}
+
