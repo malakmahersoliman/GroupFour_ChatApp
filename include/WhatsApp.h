@@ -8,18 +8,22 @@
 #include "PrivateChat.h"
 #include "GroupChat.h"
 
+using namespace std;
+
 class WhatsApp {
 private:
-    std::vector<User> users;
-    std::vector<Chat*> chats;
+    vector<User> users;
+    vector<Chat*> chats;   
     int currentUserIndex;
 
-    int findUserIndex(std::string username) const;
+    int findUserIndex(string username) const;
     bool isLoggedIn() const;
-    std::string getCurrentUsername() const;
+    string getCurrentUsername() const;
 
 public:
     WhatsApp();
+    ~WhatsApp();                
+
     void signUp();
     void login();
     void startPrivateChat();

@@ -1,41 +1,49 @@
-#include <iostream>
-
-
 #include "../include/Chat.h"
 #include "../include/Message.h"
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
-// ========================
-//       CHAT CLASS (BASE)
-// ========================
-Chat::Chat() {
-    // TODO: Implement default constructor
-}
+Chat::Chat() : chatName("Unnamed Chat") {}
 
-// Parameterized constructor
-Chat::Chat(vector<string> users, string name) {
-    // TODO: Implement parameterized constructor
-}
+Chat::Chat(vector<string> users, string name)
+    : participants(users), chatName(name) {}
 
 void Chat::addMessage(const Message& msg) {
-    // TODO: Implement message addition
+    messages.push_back(msg);
 }
 
 bool Chat::deleteMessage(int index, const string& username) {
-    // TODO: Implement message deletion
+    if (index >= 0 && index < (int)messages.size() &&
+        messages[index].getSender() == username) {
+        messages.erase(messages.begin() + index);
+        return true;
+    }
     return false;
 }
 
 void Chat::displayChat() const {
-    // TODO: Implement chat display
+    // keep it minimal so vtable gets emitted
+    cout << "Chat: " << chatName << "\n";
+    for (const auto& m : messages) m.display();
 }
 
 vector<Message> Chat::searchMessages(string keyword) const {
-    // TODO: Implement message search
-    return {};
+    vector<Message> out;
+    for (const auto& m : messages) {
+        if (m.getContent().find(keyword) != string::npos) out.push_back(m);
+    }
+    return out;
 }
 
 void Chat::exportToFile(const string& filename) const {
-    // TODO: Implement export to file
+    ofstream f(filename);
+    if (!f.is_open()) return;
+    for (const auto& m : messages) {
+        f << "[" << m.getTimestamp() << "] "
+          << m.getSender() << ": "
+          << m.getContent()
+          << " [" << m.getStatus() << "]\n";
+    }
 }

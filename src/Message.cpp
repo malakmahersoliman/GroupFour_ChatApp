@@ -1,67 +1,42 @@
-#include <iostream>
-#include <string>
-#include <ctime>
 #include "../include/Message.h"
+#include <iostream>
+#include <ctime>
 
 using namespace std;
 
-// ========================
-//      MESSAGE CLASS
-// ========================
-
-
-
-// Default constructor
-Message::Message() {
-    // TODO: Implement default constructor
+static string nowCtimeTrimmed() {
+    time_t t = time(nullptr);
+    string s = ctime(&t);
+    if (!s.empty() && s.back() == '\n') s.pop_back();
+    return s;
 }
 
-// Parameterized constructor
-Message::Message(string sndr, string cntnt) {
-    // TODO: Implement parameterized constructor
-}
+Message::Message()
+: sender(""), content(""), timestamp(nowCtimeTrimmed()),
+  status("sent"), replyTo(nullptr) {}
 
-string Message::getContent() const {
-    // TODO: Implement getter
-    return "";
-}
+Message::Message(string sndr, string cntnt)
+: sender(sndr), content(cntnt),
+  timestamp(nowCtimeTrimmed()), status("sent"),
+  replyTo(nullptr) {}
 
-string Message::getSender() const {
-    // TODO: Implement getter
-    return "";
-}
+string Message::getContent() const { return content; }
+string Message::getSender()  const { return sender; }
+string Message::getTimestamp() const { return timestamp; }
+string Message::getStatus()  const { return status; }
+Message* Message::getReplyTo() const { return replyTo; }
 
-string Message::getTimestamp() const {
-    // TODO: Implement getter
-    return "";
-}
+void Message::setStatus(string newStatus) { status = newStatus; }
+void Message::setReplyTo(Message* msg) { replyTo = msg; }
 
-string Message::getStatus() const {
-    // TODO: Implement getter
-    return "";
-}
-
-Message* Message::getReplyTo() const {
-    // TODO: Implement getter
-    return nullptr;
-}
-
-void Message::setStatus(string newStatus) {
-    // TODO: Implement setter
-}
-
-void Message::setReplyTo(Message* msg) {
-    // TODO: Implement setter
-}
-
-void Message::updateTimestamp() {
-    // TODO: Implement timestamp update
-}
+void Message::updateTimestamp() { timestamp = nowCtimeTrimmed(); }
 
 void Message::display() const {
-    // TODO: Implement message display
+    cout << "[" << timestamp << "] "
+         << sender << ": " << content
+         << " [" << status << "]\n";
 }
 
 void Message::addEmoji(string emojiCode) {
-    // TODO: Implement emoji support
+    content += " " + emojiCode;
 }
